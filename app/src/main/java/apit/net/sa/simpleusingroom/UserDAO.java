@@ -8,6 +8,7 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.Single;
 
 
@@ -28,7 +29,7 @@ public interface UserDAO {
     @Delete
     public void deleteUser(UserEntity userEntity);
 
-   /* @Query("SELECT * FROM userentity")
-    Single<List<UserEntity>> getUsersSingle();*/
+    @Query("SELECT * FROM userentity")
+    Maybe<List<UserEntity>> getUsersSingle();
 
 }

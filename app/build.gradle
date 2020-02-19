@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -29,17 +33,15 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.5.1'
         //ROOM database
 
-    //RXJava2
-   /* implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'*/
+
 
     //RXjava with room
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'android.arch.persistence.room:runtime:1.0.0'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
+    implementation 'android.arch.persistence.room:runtime:1.1.0'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
 
-   // implementation 'android.arch.persistence.room:rxjava2:1.0.0-alpha1'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.0-alpha1'
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     testImplementation 'junit:junit:4.12'

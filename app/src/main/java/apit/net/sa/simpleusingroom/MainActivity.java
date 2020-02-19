@@ -25,7 +25,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.observers.DisposableMaybeObserver;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         myRec.setItemAnimator(new DefaultItemAnimator());
         myRec.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 
-        /*DatabaseSingInstance.getInstance(this)
+       /* DatabaseSingInstance.getInstance(this)
                 .getOurDatabase()
                 .userDAO()
                 .getUsersSingle()
@@ -80,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });*/
-      /*  DatabaseSingInstance.getInstance(this)
+      /* DatabaseSingInstance.getInstance(this)
                 .getOurDatabase()
                 .userDAO()
                 .getUsersSingle()
@@ -93,6 +98,44 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(int position) {
                                 showPopupWindow(userEntities,position);
+                            }
+                        });
+                        myRec.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });*/
+
+
+       /* Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                DatabaseSingInstance.getInstance(MainActivity.this)
+                        .getOurDatabase()
+                        .userDAO()
+                        .getUserS();
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        userEntityList =  DatabaseSingInstance.getInstance(MainActivity.this)
+                                .getOurDatabase()
+                                .userDAO()
+                                .getUserS();
+                        adapter = new UserAdapter(userEntityList, MainActivity.this, new UserAdapter.OnLongClickListner() {
+                            @Override
+                            public void onClick(int position) {
+                                showPopupWindow(userEntityList,position);
                             }
                         });
                         myRec.setAdapter(adapter);
